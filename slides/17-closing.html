@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closing</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .closing {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 64px 72px;
+    position: relative;
+  }
+  .closing::before {
+    content: '\201C';
+    position: absolute;
+    top: 10%;
+    left: 8%;
+    font-family: var(--font-heading);
+    font-size: 240px;
+    color: rgba(168,85,247,0.06);
+    line-height: 1;
+  }
+  .closing-text {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1.6;
+    max-width: 700px;
+    font-style: italic;
+    margin-bottom: 48px;
+  }
+  .closing-text em {
+    color: var(--accent-soft);
+    font-style: italic;
+  }
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 32px;
+    border-radius: 2px;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .takeaways {
+    display: flex;
+    gap: 32px;
+  }
+  .takeaway {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .takeaway span {
+    color: var(--accent-soft);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="closing">
+    <p class="closing-text">We started by asking what intelligence is. LLMs are impressive, but they're not intelligent — <em>not yet</em>. The market is pricing them as if they already are. But the real breakthrough might not come from more GPUs. It might come from giving AI a <em>body</em> and letting it learn the way we do — by <em>making mistakes</em>.</p>
+    <div class="divider"></div>
+    <div class="takeaways">
+      <div class="takeaway">Watch the market with <span>skepticism</span></div>
+      <div class="takeaway">Watch the technology with <span>curiosity</span></div>
+      <div class="takeaway">Watch embodied AI <span>closely</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

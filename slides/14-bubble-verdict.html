@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is It a Bubble?</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .verdict {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .verdict-card {
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .verdict-card.real {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+  .verdict-card.bubble {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+  }
+  .verdict-card h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .verdict-card.real h3 { color: #86efac; }
+  .verdict-card.bubble h3 { color: #fca5a5; }
+  .verdict-card p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .position {
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 32px;
+    text-align: center;
+  }
+  .position p {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .position em {
+    color: var(--accent-soft);
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+    <span class="section-label">Verdict</span>
+    <h2>So... Is It a Bubble?</h2>
+    <p class="lead">Two things can be true at the same time.</p>
+    <div class="verdict">
+      <div class="verdict-card real">
+        <h3>✓ The Tech Is Real</h3>
+        <p>The underlying technology is real and still improving</p>
+        <p>Models are getting better, cheaper, more capable</p>
+        <p>Real products are being built and used daily</p>
+      </div>
+      <div class="verdict-card bubble">
+        <h3>✗ The Financial Layer Is Not</h3>
+        <p>Circular deals inflate revenue on paper</p>
+        <p>Stock swaps disguise the true cost of growth</p>
+        <p>Space data centers and "abundant intelligence" are narratives, not products</p>
+      </div>
+    </div>
+    <div class="position">
+      <p>We are still <em>hiking</em> — but there IS a bubble in the <em>financial layer</em>.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

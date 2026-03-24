@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embodied Intelligence</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+  .paradox-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 28px;
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .paradox-side h4 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .paradox-side.easy h4 { color: #86efac; }
+  .paradox-side.hard h4 { color: #fca5a5; }
+  .paradox-side p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 6px;
+  }
+  .insight-box {
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .insight-box p {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--accent-soft);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .players {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .player-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .player-card .name {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .player-card .role {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+
+    <div class="step-content active" id="step-0">
+      <span class="section-label">The Path Forward</span>
+      <h2>Embodied Intelligence</h2>
+      <p class="lead">Real intelligence requires a body interacting with the physical world.</p>
+      <div class="paradox-box">
+        <div class="paradox-side easy">
+          <h4>Easy for AI</h4>
+          <p>Write essays</p>
+          <p>Play chess</p>
+          <p>Pass bar exams</p>
+          <p>Generate code</p>
+        </div>
+        <div class="paradox-side hard">
+          <h4>Hard for AI</h4>
+          <p>Walk across a messy room</p>
+          <p>Pick up an egg without breaking it</p>
+          <p>Catch a ball</p>
+          <p>Fold laundry</p>
+        </div>
+      </div>
+      <div class="insight-box">
+        <p>Moravec's Paradox: the "easy" human stuff is actually the hard intelligence problem.</p>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Who's Building It</span>
+      <h2>The Race to Give AI a Body</h2>
+      <p class="lead">A child learns "cup" by grabbing it, dropping it, spilling from it — not from a definition.</p>
+      <div class="players">
+        <div class="player-card">
+          <div class="name">Yann LeCun</div>
+          <div class="role">Meta JEPA / World Models</div>
+        </div>
+        <div class="player-card">
+          <div class="name">Tesla Optimus</div>
+          <div class="role">Humanoid Robot</div>
+        </div>
+        <div class="player-card">
+          <div class="name">Figure</div>
+          <div class="role">Humanoid Robot</div>
+        </div>
+        <div class="player-card">
+          <div class="name">Boston Dynamics</div>
+          <div class="role">Advanced Robotics</div>
+        </div>
+        <div class="player-card">
+          <div class="name">1X</div>
+          <div class="role">Humanoid Robot</div>
+        </div>
+        <div class="player-card">
+          <div class="name">World Models</div>
+          <div class="role">The Bridge</div>
+        </div>
+      </div>
+      <div class="insight-box">
+        <p>LLMs know "red" is close to "purple." An embodied agent knows red is warm, alarming, associated with pain.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+let currentStep = 0;
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') goToStep(e.data.step);
+});
+</script>
+</body>
+</html>

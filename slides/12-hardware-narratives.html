@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hardware Reality & Narratives</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+  .cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .fact-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .fact-card .icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .fact-card h4 {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .fact-card p {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .big-stat {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .big-stat .num {
+    font-family: var(--font-heading);
+    font-size: 56px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fca5a5, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .big-stat .label {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+  .big-stat .sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .two-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .panel h3 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    margin-bottom: 12px;
+  }
+  .panel p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 6px;
+  }
+  .narrative-box {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .narrative-box p {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--accent-soft);
+    font-style: italic;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Physical Reality</span>
+      <h2>Those GPUs Are Easily Broken</h2>
+      <div class="big-stat">
+        <div class="num">~10 tons</div>
+        <div class="label">Broken GPUs produced per week at a large data center</div>
+        <div class="sub">Not accounted for on Nvidia's asset/liability sheets</div>
+      </div>
+      <div class="cards-row">
+        <div class="fact-card">
+          <div class="icon">🔥</div>
+          <h4>Heat Damage</h4>
+          <p>GPUs run at extreme temperatures 24/7, accelerating hardware failure</p>
+        </div>
+        <div class="fact-card">
+          <div class="icon">⚡</div>
+          <h4>Power Stress</h4>
+          <p>Constant high-wattage operation degrades components rapidly</p>
+        </div>
+        <div class="fact-card">
+          <div class="icon">🗑️</div>
+          <h4>Disposable at Scale</h4>
+          <p>Hardware is fragile, expensive, and treated as consumable</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Fantasy vs Reality</span>
+      <h2>Data Centers... in Space?</h2>
+      <p class="lead">Nvidia's "Vera Rubin Space-1" and Starcloud's orbital H100 launch.</p>
+      <div class="two-panel">
+        <div class="panel">
+          <h3>The Claim</h3>
+          <p>Build the largest data center in orbit</p>
+          <p>5GW orbital facility with massive solar panels</p>
+          <p>Starcloud launched an H100 into orbit (Nov 2025)</p>
+        </div>
+        <div class="panel">
+          <h3>The Reality</h3>
+          <p>GPUs are extremely fragile — vibration, radiation, micro-debris</p>
+          <p>Heat dissipation in vacuum: no convection, only radiation</p>
+          <p>This is a PR story, not an engineering plan</p>
+        </div>
+      </div>
+      <div class="narrative-box">
+        <p>When companies start proposing space data centers, ask yourself: is this technology, or is this narrative?</p>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-2">
+      <span class="section-label">The New Story</span>
+      <h2>Sam Altman's "Abundant Intelligence"</h2>
+      <p class="lead">The pitch shifted: from building the best model to building the biggest data center.</p>
+      <div class="two-panel">
+        <div class="panel">
+          <h3>The Vision</h3>
+          <p>A factory producing 1 gigawatt of AI infrastructure every week</p>
+          <p>Trade intelligence for compute power</p>
+          <p>Could cure cancer, solve climate change</p>
+        </div>
+        <div class="panel">
+          <h3>The Real Play</h3>
+          <p>OpenAI wants to IPO without proving profitability</p>
+          <p>Infrastructure is something investors can value</p>
+          <p>The story changed: "build AGI" → "build data centers"</p>
+        </div>
+      </div>
+      <div class="narrative-box">
+        <p>OpenAI is no longer selling you the best model. They're selling you the biggest data center.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+let currentStep = 0;
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') goToStep(e.data.step);
+});
+</script>
+</body>
+</html>

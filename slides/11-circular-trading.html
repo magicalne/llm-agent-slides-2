@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circular Trading</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+
+  /* Triangle diagram */
+  .triangle {
+    position: relative;
+    height: 300px;
+    margin-top: 28px;
+  }
+  .node {
+    position: absolute;
+    background: var(--bg-card);
+    border: 2px solid rgba(168,85,247,0.3);
+    border-radius: 16px;
+    padding: 16px 24px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .node .company {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .node .amount {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--accent-soft);
+    margin-top: 2px;
+  }
+  .node-top { top: 0; left: 50%; transform: translateX(-50%); }
+  .node-left { bottom: 10px; left: 8%; }
+  .node-right { bottom: 10px; right: 8%; }
+
+  .arrow-label {
+    position: absolute;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--bg-slide);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.05);
+    white-space: nowrap;
+  }
+  /* Nvidia → OpenAI (top-left edge) */
+  .arrow-tl { top: 38%; left: 14%; transform: rotate(-5deg); }
+  /* OpenAI → Oracle (bottom edge) */
+  .arrow-b { bottom: 0; left: 50%; transform: translateX(-50%); }
+  /* Oracle → Nvidia (top-right edge) */
+  .arrow-tr { top: 38%; right: 14%; transform: rotate(5deg); }
+
+  .summary {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .summary p {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: #fca5a5;
+    font-style: italic;
+  }
+
+  /* AMD swap */
+  .swap-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 36px;
+  }
+  .swap-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px 32px;
+    text-align: center;
+    min-width: 150px;
+  }
+  .swap-box .company {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .swap-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 180px;
+  }
+  .swap-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .swap-row .arrow-icon {
+    font-size: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .swap-row .flow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+  }
+  .swap-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 28px;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent-soft);
+  }
+  .stat-item .label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Bubble Evidence</span>
+      <h2>The Nvidia → OpenAI → Oracle Triangle</h2>
+      <div class="triangle">
+        <div class="node node-top">
+          <div class="company">Nvidia</div>
+        </div>
+        <div class="node node-left">
+          <div class="company">OpenAI</div>
+        </div>
+        <div class="node node-right">
+          <div class="company">Oracle</div>
+        </div>
+        <div class="arrow-label arrow-tl">$100B invest ↓</div>
+        <div class="arrow-label arrow-b">$300B cloud deal →</div>
+        <div class="arrow-label arrow-tr">↑ buys GPUs</div>
+      </div>
+      <div class="summary">
+        <p>The money goes in a circle. Each company books revenue. All three stock prices go up.</p>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Bubble Evidence</span>
+      <h2>The AMD ↔ OpenAI Swap</h2>
+      <p class="lead">AMD is essentially paying OpenAI with its own stock to buy AMD's chips.</p>
+      <div class="swap-diagram">
+        <div class="swap-box">
+          <div class="company">OpenAI</div>
+        </div>
+        <div class="swap-arrows">
+          <div class="swap-row">
+            <div class="flow">Buys GPUs (6GW compute)</div>
+            <div class="arrow-icon">→</div>
+          </div>
+          <div class="swap-divider"></div>
+          <div class="swap-row">
+            <div class="arrow-icon">←</div>
+            <div class="flow">160M shares at $0.01 (~10% of AMD)</div>
+          </div>
+        </div>
+        <div class="swap-box">
+          <div class="company">AMD</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">+27%</div>
+          <div class="label">AMD stock on announcement day</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">$0.01</div>
+          <div class="label">Price per share for OpenAI</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">10%</div>
+          <div class="label">Potential stake in AMD</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+let currentStep = 0;
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') goToStep(e.data.step);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligence & Models</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+  .two-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 28px;
+  }
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .panel h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    margin-bottom: 16px;
+  }
+  .panel p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .model-tag {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .model-tag .name {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .model-tag .desc {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .footnote {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 24px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Foundation</span>
+      <h2>Language ≠ Intelligence</h2>
+      <p class="lead">Language is the carrier of intelligence, not intelligence itself.</p>
+      <div class="two-panel">
+        <div class="panel">
+          <h3>How Humans Learn</h3>
+          <p>We make mistakes, form hypotheses, test them against reality.</p>
+          <p>Learning is an active loop: act → fail → correct → understand.</p>
+        </div>
+        <div class="panel">
+          <h3>How LLMs Learn</h3>
+          <p>Predict the next token from massive amounts of human text.</p>
+          <p>No mistakes, no hypotheses — just statistical pattern matching.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Landscape</span>
+      <h2>The Model Zoo</h2>
+      <p class="lead">LLMs are just one architecture. The field is much wider.</p>
+      <div class="model-grid">
+        <div class="model-tag">
+          <div class="name">Dense</div>
+          <div class="desc">GPT, Claude</div>
+        </div>
+        <div class="model-tag">
+          <div class="name">MoE</div>
+          <div class="desc">Mixture of Experts</div>
+        </div>
+        <div class="model-tag">
+          <div class="name">Mamba</div>
+          <div class="desc">State Space Models</div>
+        </div>
+        <div class="model-tag">
+          <div class="name">Diffusion</div>
+          <div class="desc">Image / Video Gen</div>
+        </div>
+        <div class="model-tag">
+          <div class="name">World Models</div>
+          <div class="desc">Simulate Environments</div>
+        </div>
+        <div class="model-tag">
+          <div class="name">NLP ↔ CV</div>
+          <div class="desc">Converging Architectures</div>
+        </div>
+      </div>
+      <p class="footnote">Transformers ate everything — but the next breakthrough may come from a different direction.</p>
+    </div>
+
+  </div>
+</div>
+<script>
+let currentStep = 0;
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') goToStep(e.data.step);
+});
+</script>
+</body>
+</html>

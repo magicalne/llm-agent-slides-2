@@ -401,3 +401,48 @@ body {
 .slide-code .comment { color: var(--text-muted); font-style: italic; }
 .slide-code .function { color: #7DD3FC; }
 .slide-code .number { color: #FCA5A5; }
+
+/* ===== QUOTE SLIDE ===== */
+.slide-quote .quote-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 64px 72px;
+  position: relative;
+}
+
+.slide-quote .quote-slide::before {
+  content: '\201C';
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  font-family: var(--font-heading);
+  font-size: 240px;
+  color: rgba(168,85,247,0.08);
+  line-height: 1;
+}
+
+.slide-quote .quote-text {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.4;
+  max-width: 750px;
+  font-style: italic;
+}
+
+.slide-quote .quote-text em {
+  color: var(--accent-soft);
+  font-style: italic;
+}
+
+.slide-quote .quote-attr {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 24px;
+}

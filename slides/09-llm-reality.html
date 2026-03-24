@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Reality</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+  .two-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .panel.panel-accent {
+    border-color: rgba(168,85,247,0.2);
+    background: rgba(168,85,247,0.05);
+  }
+  .panel h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    margin-bottom: 14px;
+  }
+  .panel p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .panel-red {
+    border-color: rgba(239,68,68,0.2);
+    background: rgba(239,68,68,0.05);
+  }
+  .panel-red h3 { color: #fca5a5; }
+  .open-question {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 32px;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .open-question .q {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .open-question .hint {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .takeaway {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 24px;
+    line-height: 1.7;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Criticism & Nuance</span>
+      <h2>What LLMs Actually Are (and Aren't)</h2>
+      <div class="two-panel">
+        <div class="panel panel-red">
+          <h3>The Criticism</h3>
+          <p>Requires enormous amounts of data</p>
+          <p>Pattern-matching on human output, not "thinking"</p>
+          <p>No real understanding behind the text</p>
+        </div>
+        <div class="panel panel-accent">
+          <h3>The Counterpoint (Ilya)</h3>
+          <p>LLMs encode relational structure of the world in weights</p>
+          <p>"Red" is closer to "purple" than "yellow" — without ever seeing color</p>
+          <p>Something meaningful IS captured — just not intelligence as we mean it</p>
+        </div>
+      </div>
+      <p class="takeaway">LLMs are not nothing. But they're also not what the market is pricing them as.</p>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Hallucination</span>
+      <h2>Confident Pattern Completers, Not Reasoners</h2>
+      <p class="lead">Hallucination isn't a bug to fix — it reveals what LLMs fundamentally are.</p>
+      <div class="two-panel">
+        <div class="panel">
+          <h3>Standard Explanation</h3>
+          <p>Insufficient training data, underfitting</p>
+          <p>More data + more compute = less hallucination</p>
+        </div>
+        <div class="panel panel-accent">
+          <h3>Deeper Take</h3>
+          <p>LLMs don't know what they don't know</p>
+          <p>They complete patterns with confidence, even when wrong</p>
+        </div>
+      </div>
+      <div class="open-question">
+        <div class="q">"Can a human kill another human?"</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+let currentStep = 0;
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') goToStep(e.data.step);
+});
+</script>
+</body>
+</html>

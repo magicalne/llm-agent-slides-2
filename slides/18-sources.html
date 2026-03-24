@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .sources {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .source-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .source-topic {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-soft);
+  }
+  .source-links {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .source-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color 0.2s;
+  }
+  .source-links a:hover {
+    color: var(--accent-soft);
+  }
+</style>
+</head>
+<body>
+<div class="slide slide-content">
+  <div class="slide-inner">
+    <span class="section-label">References</span>
+    <h2>Sources</h2>
+    <div class="sources">
+      <div class="source-row">
+        <div class="source-topic">Circular Financing</div>
+        <div class="source-links">
+          <a href="https://www.theregister.com/2025/11/04/the_circular_economy_of_ai/">The Register — "The circular economy of AI"</a><br>
+          <a href="https://www.venturesedge.io/articles/ai-roundtripping-nvidia-openai-oracle-and-the-circular-financing-debate">Ventures Edge — Circular financing debate</a>
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-topic">AMD / OpenAI Deal</div>
+        <div class="source-links">
+          <a href="https://arstechnica.com/ai/2025/10/amd-wins-massive-ai-chip-deal-from-openai-with-stock-sweetener/">Ars Technica — AMD wins massive AI chip deal</a><br>
+          <a href="https://nypost.com/2025/10/06/business/amd-shares-soar-27-on-openai-chip-deal-that-could-give-altmans-firm-a-10-stake/">NY Post — AMD shares soar 27%</a>
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-topic">Abundant Intelligence</div>
+        <div class="source-links">
+          <a href="https://blog.samaltman.com/abundant-intelligence/">Sam Altman — "Abundant Intelligence"</a>
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-topic">Space Data Centers</div>
+        <div class="source-links">
+          <a href="https://blogs.nvidia.com/blog/starcloud/">Nvidia Blog — Starcloud</a><br>
+          <a href="https://www.bgr.com/2119054/why-ai-data-centers-not-in-space-yet-nvidia-ceo-jensen-huang/">BGR — Jensen Huang on space data centers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
