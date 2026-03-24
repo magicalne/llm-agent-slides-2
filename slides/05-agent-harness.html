@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Harness</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+
+  .visual-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 24px;
+  }
+
+  /* Step 1: Engineers in shifts */
+  .shifts-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .shift-worker {
+    text-align: center;
+  }
+
+  .shift-worker .emoji {
+    font-size: 48px;
+    margin-bottom: 8px;
+  }
+
+  .shift-worker .time {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .shift-arrow {
+    color: var(--accent);
+    font-size: 24px;
+  }
+
+  .problem-text {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .problem-text strong {
+    color: var(--accent-soft);
+  }
+
+  /* Step 2: Harness components */
+  .harness-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .harness-row {
+    display: flex;
+    gap: 48px;
+  }
+
+  .harness-component {
+    text-align: center;
+    padding: 24px 32px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    min-width: 140px;
+  }
+
+  .harness-component .emoji {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .harness-component .label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .harness-connector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 20px;
+  }
+
+  .harness-result {
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.2);
+    padding: 20px 48px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-soft);
+  }
+
+  /* Step 3: Streaming comparison */
+  .streaming-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+
+  .stream-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .stream-box.bad {
+    border-color: rgba(239,68,68,0.3);
+  }
+
+  .stream-box.good {
+    border-color: rgba(34,197,94,0.3);
+  }
+
+  .stream-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .stream-box.bad .stream-header {
+    color: #fca5a5;
+  }
+
+  .stream-box.good .stream-header {
+    color: #86efac;
+  }
+
+  .stream-header .icon {
+    font-size: 20px;
+  }
+
+  .stream-content {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    background: rgba(0,0,0,0.2);
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 120px;
+  }
+
+  .stream-box.good .stream-content .typing {
+    color: var(--accent-soft);
+  }
+
+  .stream-box.good .stream-content .interrupt {
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+
+  .stream-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .stream-box.bad .stream-footer {
+    color: #fca5a5;
+  }
+
+  .stream-box.good .stream-footer {
+    color: #86efac;
+  }
+
+  /* Step 4: Same model different harness */
+  .model-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    margin-top: 32px;
+  }
+
+  .model-col {
+    text-align: center;
+  }
+
+  .model-emoji {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .model-wrap {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .model-col:nth-child(1) .model-wrap {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #fca5a5;
+  }
+
+  .model-col:nth-child(2) .model-wrap {
+    background: rgba(234,179,8,0.1);
+    border: 1px solid rgba(234,179,8,0.3);
+    color: #fde047;
+  }
+
+  .model-col:nth-child(3) .model-wrap {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #86efac;
+  }
+
+  .model-result {
+    font-size: 36px;
+  }
+
+  .insight-text {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(168,85,247,0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(168,85,247,0.1);
+  }
+
+  .insight-text strong {
+    color: var(--accent-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="slide slide-content">
+  <div class="slide-inner">
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Architecture</span>
+      <h2>The Problem: Long-Running Agents</h2>
+      <p class="lead">Imagine engineers working in shifts with no handoff.</p>
+      <div class="visual-box">
+        <div class="shifts-diagram">
+          <div class="shift-worker">
+            <div class="emoji">👷</div>
+            <div class="time">Shift 1</div>
+          </div>
+          <span class="shift-arrow">→</span>
+          <div class="shift-worker">
+            <div class="emoji">👷</div>
+            <div class="time">Shift 2</div>
+          </div>
+          <span class="shift-arrow">→</span>
+          <div class="shift-worker">
+            <div class="emoji">👷</div>
+            <div class="time">Shift 3</div>
+          </div>
+          <span class="shift-arrow">→</span>
+          <div class="shift-worker">
+            <div class="emoji">👷</div>
+            <div class="time">Shift 4</div>
+          </div>
+        </div>
+        <div class="problem-text">
+          Each shift starts with <strong>no memory</strong> of what happened before.<br>
+          Context windows reset. Progress is lost.
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Architecture</span>
+      <h2>The Agent Harness</h2>
+      <p class="lead">Software infrastructure that wraps around an LLM to make it an effective agent.</p>
+      <div class="visual-box">
+        <div class="harness-diagram">
+          <div class="harness-row">
+            <div class="harness-component">
+              <div class="emoji">🧠</div>
+              <div class="label">Model</div>
+            </div>
+            <div class="harness-component">
+              <div class="emoji">📁</div>
+              <div class="label">State</div>
+            </div>
+            <div class="harness-component">
+              <div class="emoji">🔒</div>
+              <div class="label">Sandbox</div>
+            </div>
+          </div>
+          <div class="harness-connector">
+            <span>│</span><span>│</span><span>│</span>
+            <span>▼</span>
+          </div>
+          <div class="harness-result">Agent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-2">
+      <span class="section-label">Example</span>
+      <h2>Streaming Architecture</h2>
+      <p class="lead">How the agent communicates affects reactivity.</p>
+      <div class="streaming-comparison">
+        <div class="stream-box bad">
+          <div class="stream-header">
+            <span class="icon">❌</span>
+            <span>Blocking (No Stream)</span>
+          </div>
+          <div class="stream-content">
+            Agent thinking...<br><br>
+            (user waits...)<br><br>
+            ████████████ DONE<br><br>
+            User can't interrupt
+          </div>
+          <div class="stream-footer">Waits until the end</div>
+        </div>
+        <div class="stream-box good">
+          <div class="stream-header">
+            <span class="icon">✅</span>
+            <span>Streaming (SSE)</span>
+          </div>
+          <div class="stream-content">
+            <span class="typing">A g e n t</span><br>
+            <span class="typing">t h i n k i n g . . .</span><br><br>
+            <span class="interrupt">User: "STOP!"</span><br>
+            → Agent stops immediately
+          </div>
+          <div class="stream-footer">Reacts instantly</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-3">
+      <span class="section-label">Key Insight</span>
+      <h2>Same Model, Different Harness</h2>
+      <p class="lead">The harness is what transforms an LLM into a reliable agent.</p>
+      <div class="visual-box">
+        <div class="model-comparison">
+          <div class="model-col">
+            <div class="model-emoji">🧠</div>
+            <div class="model-wrap">Bad Wrap</div>
+            <div class="model-result">😵</div>
+          </div>
+          <div class="model-col">
+            <div class="model-emoji">🧠</div>
+            <div class="model-wrap">Okay Wrap</div>
+            <div class="model-result">😐</div>
+          </div>
+          <div class="model-col">
+            <div class="model-emoji">🧠</div>
+            <div class="model-wrap">Good Wrap</div>
+            <div class="model-result">😎</div>
+          </div>
+        </div>
+        <div class="insight-text">
+          <strong>Software-level design</strong> determines agent quality, not just model capability.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 0;
+const totalSteps = 4;
+
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') {
+    goToStep(e.data.step);
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot vs Agent</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .col {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .col h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    margin-bottom: 16px;
+  }
+  .col p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .col .driver {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 12px;
+  }
+  .col .driver strong {
+    color: var(--accent);
+  }
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+  .insight-box {
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+  .insight-box h4 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    margin-bottom: 12px;
+  }
+  .insight-box p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide slide-content">
+  <div class="slide-inner">
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Clarification</span>
+      <h2>Chatbot vs Agent</h2>
+      <p class="lead">From Part 1, some audience confused LLM chatbot with LLM agent. Let's clarify the key distinction.</p>
+      <div class="comparison">
+        <div class="col">
+          <h3>LLM Chatbot</h3>
+          <p>The LLM chat API responds once per message you send.</p>
+          <p>It can only answer your question — one turn at a time.</p>
+          <p class="driver"><strong>The user</strong> drives the conversation</p>
+        </div>
+        <div class="col">
+          <h3>LLM Agent</h3>
+          <p>An agent drives the chat messages forward by itself.</p>
+          <p>It decides what to do next, calls tools, observes results, and continues.</p>
+          <p class="driver"><strong>The agent</strong> drives the conversation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">The Key Question</span>
+      <h2>Who Drives the Conversation?</h2>
+      <p class="lead">The core difference is about control flow.</p>
+      <div class="comparison">
+        <div class="col">
+          <h3>Chatbot Flow</h3>
+          <p>User sends message → LLM responds → Done</p>
+          <p class="driver"><strong>User-driven</strong>: The user initiates each interaction</p>
+        </div>
+        <div class="col">
+          <h3>Agent Flow</h3>
+          <p>User sets a goal → Agent loops (think → act → observe) → Goal reached</p>
+          <p class="driver"><strong>Agent-driven</strong>: The agent autonomously pursues the goal</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-2">
+      <span class="section-label">Key Insight</span>
+      <h2>The Agent Idea</h2>
+      <p class="lead">The whole agent concept is about how and who should drive the messages to push toward the goal.</p>
+      <div class="insight-box">
+        <h4>Remember</h4>
+        <p>• Chatbot: User drives, LLM responds once<br>
+        • Agent: Agent drives, loops until goal is reached<br>
+        • The "loop" is what makes an agent an agent</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 0;
+const totalSteps = 3;
+
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') {
+    goToStep(e.data.step);
+  }
+});
+</script>
+
+</body>
+</html>

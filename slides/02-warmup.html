@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warmup Questions</title>
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/theme.css">
+<style>
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+
+  .poll-container {
+    margin-top: 24px;
+  }
+
+  .poll-question {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .poll-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 600px;
+  }
+
+  .poll-option {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .poll-option:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(168,85,247,0.3);
+    transform: translateY(-2px);
+  }
+
+  .poll-option .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(168,85,247,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--accent-soft);
+    flex-shrink: 0;
+  }
+
+  .poll-option .label {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .poll-option.full-width {
+    grid-column: span 2;
+  }
+
+  .instruction {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .question-number {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide slide-content">
+  <div class="slide-inner">
+    <div class="step-content active" id="step-0">
+      <span class="section-label">Warmup</span>
+      <h2>Let's Start with Some Questions</h2>
+      <p class="lead">Raise your hand or shout out your answer!</p>
+      <div class="poll-container">
+        <div class="question-number">Question 1</div>
+        <div class="poll-question">What's the sloppiest part or biggest drawback of LLMs/agents you've experienced?</div>
+        <div class="poll-options">
+          <div class="poll-option">
+            <span class="icon">1</span>
+            <span class="label">Hallucination / Wrong facts</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">2</span>
+            <span class="label">Context window limits</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">3</span>
+            <span class="label">Poor multi-modal support</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">4</span>
+            <span class="label">Cost / Token pricing</span>
+          </div>
+          <div class="poll-option full-width">
+            <span class="icon">5</span>
+            <span class="label">Something else — share your pain!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-1">
+      <span class="section-label">Warmup</span>
+      <h2>Let's Start with Some Questions</h2>
+      <p class="lead">Raise your hand or shout out your answer!</p>
+      <div class="poll-container">
+        <div class="question-number">Question 2</div>
+        <div class="poll-question">Is there a bubble in AI right now?</div>
+        <div class="poll-options">
+          <div class="poll-option">
+            <span class="icon">1</span>
+            <span class="label">Yes, definitely</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">2</span>
+            <span class="label">No, this is real progress</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">3</span>
+            <span class="label">A little — some hype, some substance</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">4</span>
+            <span class="label">I don't care, just let me use it</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-2">
+      <span class="section-label">Warmup</span>
+      <h2>Let's Start with Some Questions</h2>
+      <p class="lead">Raise your hand or shout out your answer!</p>
+      <div class="poll-container">
+        <div class="question-number">Question 3</div>
+        <div class="poll-question">Do you feel safe when an LLM agent owns your information on your phone and computer?</div>
+        <div class="poll-options">
+          <div class="poll-option">
+            <span class="icon">1</span>
+            <span class="label">Yes</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">2</span>
+            <span class="label">No</span>
+          </div>
+          <div class="poll-option full-width">
+            <span class="icon">3</span>
+            <span class="label">A little</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-content" id="step-3">
+      <span class="section-label">Warmup</span>
+      <h2>Let's Start with Some Questions</h2>
+      <p class="lead">Raise your hand or shout out your answer!</p>
+      <div class="poll-container">
+        <div class="question-number">Question 4</div>
+        <div class="poll-question">Work for you or cook for you? What do you prefer?</div>
+        <div class="poll-options">
+          <div class="poll-option">
+            <span class="icon">1</span>
+            <span class="label">Work for me</span>
+          </div>
+          <div class="poll-option">
+            <span class="icon">2</span>
+            <span class="label">Cook for me</span>
+          </div>
+          <div class="poll-option full-width">
+            <span class="icon">3</span>
+            <span class="label">Both!</span>
+          </div>
+        </div>
+        <p class="instruction">Great! Now let's dive into the content...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 0;
+const totalSteps = 4;
+
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('active', i === step);
+  });
+}
+
+window.addEventListener('message', (e) => {
+  if (e.data.type === 'goToStep') {
+    goToStep(e.data.step);
+  }
+});
+</script>
+
+</body>
+</html>
